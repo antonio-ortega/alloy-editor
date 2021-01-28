@@ -39,20 +39,6 @@ Link.prototype = {
 
 		if (link) {
 			range.moveToElementEditEnd(link);
-
-			const nextNode = range.getNextEditableNode();
-
-			if (
-				nextNode &&
-				!this._editor.element.equals(nextNode.getCommonAncestor(link))
-			) {
-				const whitespace = /\s/.exec(nextNode.getText());
-
-				const offset = whitespace ? whitespace.index + 1 : 0;
-
-				range.setStart(nextNode, offset);
-				range.setEnd(nextNode, offset);
-			}
 		}
 
 		this._editor.getSelection().selectRanges([range]);
